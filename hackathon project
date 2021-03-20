@@ -1,0 +1,23 @@
+# library to import the excel file
+import openpyxl
+# libraries to create the pdf file and add text to it
+from reportlab.pdfgen import canvas
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.pdfmetrics import stringWidth
+from reportlab.pdfbase.ttfonts import TTFont
+# library to get logo related information
+from PIL import Image
+
+# convert the font so it is compatible
+pdfmetrics.registerFont(TTFont('Arial', 'Arial.ttf'))
+
+# import the sheet from the excel file
+wb = openpyxl.load_workbook('C:\\Users\\user\\Desktop\\Hackathon.xlsx')
+sheet = wb.get_sheet_by_name('Data For Hackathon v2')
+
+# import company's logo
+im = Image.open('Logo.jpg')
+width, height = im.size
+ratio = width / height
+image_width = 200
+image_height = int(image_width / ratio)
